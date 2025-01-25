@@ -26,11 +26,11 @@ def submit():
 
         if(database.userExists(username, password)):
             print("user exists go to login")
+            return render_template('userhomepage.html')
         else:
             print("user does not exist go to register")
-        
-        return "name is " + username + "passwordis" + password
-
+            return render_template('register.html')
+      
         
         #database call in here!
     
@@ -48,7 +48,8 @@ def regnew():
     email = request.form['email']
     database.addUsertoDb(username, password, email)
     #we should re route to a homepage now
-    return "new user register here"
+    print("redirect to homepage")
+    return render_template('userhomepage.html')
 
 
 server = Server(app.wsgi_app)
