@@ -4,12 +4,14 @@
 
 from flask import Flask, render_template, request
 from livereload import Server
+import database
 
 app = Flask(__name__)
 app.debug = True
 
 @app.route('/')
 def mainpage():
+    database.createLoginDB()
     return render_template('landing.html')
 
 
@@ -18,8 +20,21 @@ def mainpage():
 def submit():
         username = request.form['username']
         password = request.form['password']
+        
+        #function to check if user is in the database, if so we will proceed to homepage
+        # if not in database we will direct to the register form!
+
+        if(database.userExists(username, password)):
+            print("user exists go to login")
+        else:
+            print("user does not exist go to register")
+        
         return "name is " + username + "passwordis" + password
 
+        
+        #database call in here!
+    
+    
 
 @app.route('/register')
 def register():
@@ -28,6 +43,11 @@ def register():
 
 @app.route('/registernewuser', methods=['POST'])
 def regnew():
+    username = request.form['username']
+    password = request.form['password']
+    email = request.form['email']
+    database.addUsertoDb(username, password, email)
+    #we should re route to a homepage now
     return "new user register here"
 
 
