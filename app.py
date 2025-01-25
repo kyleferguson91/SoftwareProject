@@ -16,9 +16,20 @@ def mainpage():
 @app.route('/submit', methods=['POST'])
 
 def submit():
-        name = request.form['name']
-        name1 = request.form['name1']
-        return "name is " + name + " " + name1
+        username = request.form['username']
+        password = request.form['password']
+        return "name is " + username + "passwordis" + password
+
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+
+@app.route('/registernewuser', methods=['POST'])
+def regnew():
+    return "new user register here"
+
 
 server = Server(app.wsgi_app)
 server.watch("templates/*.*") 

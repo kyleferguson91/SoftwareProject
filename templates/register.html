@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/images/bbfavicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <title>Register</title>
+</head>
+<body>
+
+
+    <div class="loginpane">
+
+
+        <div class="formholder glassy-background">
+            <form action="/registernewuser" method="POST">
+                <img class="loginlogo smallerlogo" src="/static/images/bblogo.jpg" alt="mainlogo">
+        
+                <h1 class="entrytext">Welcome to Blossom Blueprint</h1>
+                <h2 class="entrytext">Register an account to get started</h2>
+                <div class="formformatterregister">
+                    <label for="username" class="formlabelusername">Username:</label>
+                    <input type="text" required class="logininput" name="username" id="username">
+                    <br>
+                    <label for="password" class="formlabelpassword">Password</label>
+                    <input type="password" required  class="logininput" name="password" id="password">
+                    <br>
+                    <label for="email" class="formlabelusername" class="formlabelpassword">E-mail</label>
+                    <input type="email" required class="logininput" name="email" id="email">
+                    
+
+                    <button class="formsubmit" type="submit">Submit</button>
+                </div>
+               
+              
+        </div>
+
+    </div>
+
+
+
+
+
+</form>
+</body>
+</html>

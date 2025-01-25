@@ -1,20 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="icon" href="/static/images/bbfavicon.png" type="image/x-icon">
+    <script src="/static/script.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Welcome to Blossom Blueprint</title>
 </head>
+
 <body>
-    <h1>some content</h1>
-    <h2>more content</h2>
 
-    <form action="/submit" method="POST">
-        <input type="text" name="name" id="name">
-        <input type="text" name="name1" id="name1">
+    <div class="entrypage fade">
+        <h1 class="entrytext">Welcome to Blossom Blueprint</h1>
+        <img class="loginlogo" src="/static/images/bblogo.jpg" alt="mainlogo">
 
-        <button type="submit">Submit</button>
-    </form>
+        <h2 class="entrytext">Let's get Growing!</h2>
+        <img class="downarrow" src="/static/images/arrow-down-sign-to-navigate.png" alt="downarrow">
+    </div>
+
+
+    <div class="loginpane">
+
+
+        <div class="formholder glassy-background">
+            <form action="/submit" method="POST">
+                <img class="loginlogo smallerlogo" src="/static/images/bblogo.jpg" alt="mainlogo">
+        
+                <h1 class="entrytext">Welcome to Blossom Blueprint</h1>
+                <h2 class="entrytext">Login to get started</h2>
+                <div class="formformatter">
+                    <label for="username" class="formlabelusername">Username:</label>
+                    <input type="text" required class="logininput" name="username" id="username">
+                    <br>
+                    <label for="password" class="formlabelpassword">Password</label>
+                    <input type="text" required  class="logininput" name="password" id="password">
+                    
+
+                    <button class="formsubmit" type="submit">Submit</button>
+                </div>
+               
+                <h3 class="notregistered">Not registered? <a href="./register">Click here!</a></h3>
+        </div>
+
+    </div>
+
 </body>
+
 </html>
