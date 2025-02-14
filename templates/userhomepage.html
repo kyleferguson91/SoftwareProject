@@ -6,13 +6,50 @@
     <link rel="stylesheet" href="../static/css/styles.css">
     <link rel="icon" href="/static/images/bbfavicon.png" type="image/x-icon">
     <script src="/static/script.js"></script>
+    <script src="/static/userscript.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
 </head>
 
 
 <body>
-<h1>userhomepage</h1>
+
 </body>
+<div class="userhomepagemain">
+
+    <div class="logobox"><img class="userlogo" src="../static/images/bblogo.jpg" alt=""></div>
+    <div class="datebox">
+        <p></p>
+
+
+        <p class="usernamegardentext ">{{name}}'s' Garden!</p>
+        <p class="datetime"></p>
+
+        <script>
+            // Function to get the current date and time
+
+            const currentDateTime = new Date();
+            document.querySelector('.datetime').textContent = currentDateTime.toLocaleString();
+
+
+        </script>
+
+
+    </div>
+    <div class="navlist">
+        <ul>
+            <li class="innerlist">
+                <Button class="nav-button">function 1</Button>
+                <Button class="nav-button">function 2</Button>
+                <Button class="nav-button">function 3</Button>
+                <Button class="nav-button">function 4</Button>
+                <Button class="nav-button">function 5</Button>
+                <Button class="nav-button">function 6</Button> 
+            
+            </li>
+        </ul>
+    </div>
+    <div class="contentpane">conentpane</div>
+</div>
 
 </html>

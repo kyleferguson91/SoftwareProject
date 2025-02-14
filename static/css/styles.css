@@ -178,3 +178,114 @@ border-radius: 10px;
     width: 8rem;
     height: 8rem;
 }
+
+
+.userhomepagemain
+{
+    background-color: #A8D5BA;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1.3fr 10fr;
+    grid-template-rows: 1fr 10fr;
+}
+
+.usernamegardentext
+{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    align-self: center;
+    justify-self: center;
+    
+
+}
+
+.datebox
+{
+    background-color: #A8D5BA;
+    display: grid;
+    grid-template-columns: 1fr 3fr 10fr;
+   
+}
+
+.logobox
+{
+    align-self: center;
+    justify-self: center;
+    
+}
+
+.userlogo
+{
+align-self: center;
+justify-self: center;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 201px;
+  margin-top: 0.1rem;
+}
+
+.datetime
+{
+  
+    align-self: center;
+    justify-self: center;
+    font-size: 1.3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.navlist
+{
+  
+  
+  
+}
+
+.innerlist
+{
+    list-style: none;
+}
+
+.contentpane
+{
+    background-color: white;
+
+}
+
+
+
+
+.nav-button {
+    background-color: #A8D5BA;
+    color: #2E6A47; 
+    border: 2px solid #7EC8E3; 
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-bottom: 1rem;
+  }
+  
+
+  .nav-button:hover {
+    background-color: #7EC8E3; 
+    color: #F6E2B3; 
+    transform: scale(1.05);
+  }
+  
+
+  .nav-button:active {
+    background-color: #FFB6A4; 
+    color: #2E6A47;
+    transform: scale(0.98);
+  }
+  
+
+  .nav-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px #D6A6E6; 
+  }
+  
