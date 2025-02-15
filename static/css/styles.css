@@ -6,7 +6,7 @@
 body
 {
 margin: 0;
-
+max-height: 80%;
 }
 
 .entrypage
@@ -184,7 +184,7 @@ border-radius: 10px;
 {
     background-color: #A8D5BA;
     width: 100vw;
-    height: 100vh;
+    max-height: 100vh;
     display: grid;
     grid-template-columns: 1.3fr 10fr;
     grid-template-rows: 1fr 10fr;
@@ -238,7 +238,7 @@ justify-self: center;
 {
   
   
-  
+  padding: 1rem;
 }
 
 .innerlist
@@ -249,8 +249,11 @@ justify-self: center;
 .contentpane
 {
     background-color: white;
+    max-height: 100%;
+    overflow-y: scroll;
 
 }
+
 
 
 
@@ -267,6 +270,8 @@ justify-self: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     margin-bottom: 1rem;
+    min-width: 10%;
+    max-width: 100%;
   }
   
 
@@ -283,9 +288,104 @@ justify-self: center;
     transform: scale(0.98);
   }
   
+  
+  
 
+  
   .nav-button:focus {
+    
     outline: none;
+    
     box-shadow: 0 0 5px 2px #D6A6E6; 
+    
   }
   
+  
+  .plantbox {
+
+    width: 100vw;
+    max-height: 100%;
+    overflow-y: scroll;
+  }
+
+  .plantentry
+  {
+   border-bottom: 2px solid black;
+    width: 100%;
+    max-height: 10%;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 10fr));
+    padding: 1rem;
+
+  }
+
+  .plantitemimage
+  {
+    width: 10rem;
+    height: 10rem;
+    margin-left: 1rem;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .plantitemname
+  {
+
+    max-width: 12rem;
+    word-wrap: break-word;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: .5rem;
+  }
+
+  .namediv
+  {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    min-width: 50%;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+  }
+
+
+  .infodiv
+  {
+    padding: .5rem;
+    display: grid;
+    border: 2px solid black;
+    max-height: min-content;
+    min-width: 200px;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(4, 1fr);
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
+    
+  }
+
+  .infodivtitle
+  {
+    border: 1px 2px 2px solid black;
+    margin: 0;
+ 
+    text-align: center;
+    font-weight: bolder;
+    margin-right: 0rem;
+  padding-bottom: 0.3rem;
+}
+
+
+.infodivinfotitle
+{
+    vertical-align: auto;
+    border-bottom: black;
+margin: 0;
+margin-right: 0;
+padding-bottom: 0.5rem;
+
+}
