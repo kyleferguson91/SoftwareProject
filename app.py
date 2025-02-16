@@ -29,6 +29,8 @@ def submit():
 
         if(database.userExists(username, password)):
             id = database.getUserID(username)
+            
+            mongodatabase.addUserToMongo(username, id)
             print("redirect to homepage", "username = ", username, "userid = ", id)
 
             return render_template('userhomepage.html', name=username, userid = id)
@@ -118,6 +120,7 @@ def regnew():
     database.addUsertoDb(username, password, email)
     #we should re route to a homepage now
     id = database.getUserID(username)
+    mongodatabase.addUserToMongo(username, id)
     print("redirect to homepage", "username = ", username, "userid = ", id)
     return render_template('userhomepage.html', name=username, userid = id)
 
