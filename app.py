@@ -5,14 +5,16 @@
 from flask import Flask, render_template, request, jsonify
 
 from livereload import Server
-import database, requests
+import database, requests, mongodatabase
 
 app = Flask(__name__)
 app.debug = True
 
 @app.route('/')
 def mainpage():
+    #create mongo database too!
     database.createLoginDB()
+    mongodatabase.createMongoDB()
     return render_template('landing.html')
 
 
@@ -26,8 +28,10 @@ def submit():
         # if not in database we will direct to the register form!
 
         if(database.userExists(username, password)):
-            print("user exists go to login")
-            return render_template('userhomepage.html', name=username)
+            id = database.getUserID(username)
+            print("redirect to homepage", "username = ", username, "userid = ", id)
+
+            return render_template('userhomepage.html', name=username, userid = id)
         else:
             print("user does not exist go to register")
             return render_template('register.html')
@@ -113,8 +117,9 @@ def regnew():
     email = request.form['email']
     database.addUsertoDb(username, password, email)
     #we should re route to a homepage now
-    print("redirect to homepage")
-    return render_template('userhomepage.html', name=username)
+    id = database.getUserID(username)
+    print("redirect to homepage", "username = ", username, "userid = ", id)
+    return render_template('userhomepage.html', name=username, userid = id)
 
 
 server = Server(app.wsgi_app)

@@ -186,7 +186,7 @@ border-radius: 10px;
     width: 100vw;
     max-height: 100vh;
     display: grid;
-    grid-template-columns: 1.3fr 10fr;
+    grid-template-columns: 1.8fr 9fr;
     grid-template-rows: 1fr 10fr;
 }
 
@@ -251,7 +251,7 @@ justify-self: center;
     background-color: white;
     max-height: 100%;
     overflow-y: scroll;
-
+    
 }
 
 
@@ -270,7 +270,7 @@ justify-self: center;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
     margin-bottom: 1rem;
-    min-width: 10%;
+    min-width: 100%;
     max-width: 100%;
   }
   
@@ -303,7 +303,7 @@ justify-self: center;
   
   .plantbox {
 
-    width: 100vw;
+    width: 100%;
     max-height: 100%;
     overflow-y: scroll;
   }
@@ -317,7 +317,7 @@ justify-self: center;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 10fr));
     padding: 1rem;
-
+    
   }
 
   .plantitemimage
@@ -365,7 +365,12 @@ justify-self: center;
     grid-template-rows: repeat(4, 1fr);
     column-gap: 0.5rem;
     row-gap: 0.5rem;
-    
+    grid-column: 3/5;
+
+  }
+  .infodiv2
+  {
+    grid-column: 5/7;
   }
 
   .infodivtitle
@@ -389,3 +394,50 @@ margin-right: 0;
 padding-bottom: 0.5rem;
 
 }
+
+
+.add-to-plants, .add-to-garden {
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    width: max-content;
+    height: max-content;
+  }
+  
+
+  .add-to-plants {
+    background-color: #4CAF50; 
+    box-shadow: 0 4px 6px rgba(0, 128, 0, 0.2);
+  }
+  
+  .add-to-plants:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 8px rgba(0, 128, 0, 0.3);
+  }
+  
+
+  .add-to-garden {
+    background-color: #FF9800; 
+    color: white;
+    box-shadow: 0 4px 6px rgba(255, 140, 0, 0.2);
+  }
+  
+  .add-to-garden:hover {
+    background-color: #e68900;
+    box-shadow: 0 6px 8px rgba(255, 140, 0, 0.3);
+  }
+.button-holder 
+{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    grid-column: 7;
+}
+
+  

@@ -1,4 +1,6 @@
+
 import * as random from "./random-plants.js"
+
 let index = 0;
 export function populatePlants(response)
 {
@@ -58,6 +60,7 @@ export function populatePlants(response)
               //infodiv #2
               let infodiv2 = document.createElement("div")
               infodiv2.classList.add("infodiv")
+              infodiv2.classList.add("infodiv2")
   
 
         for (let i = 0; i<e.data.length; i++)
@@ -79,14 +82,10 @@ export function populatePlants(response)
                     infodiv.appendChild(key)
                     infodiv.appendChild(info)
 
-                    let hiddenID = document.createElement("input")
-                    hiddenID.type="hidden"
-                    hiddenID.id=e.id
                  
                     //we only want to apply the id parameter once
+                    //we will put this onto our button objects that are on each plant
 
-                    if (!namediv.querySelector("input"))
-                    {namediv.appendChild(hiddenID)}
 
 
                 }
@@ -126,14 +125,30 @@ export function populatePlants(response)
 
 
            plantentry.appendChild(infodiv2)
+           let addtogarden = document.createElement("button")
+           let addtoplants = document.createElement("button")
+ 
+           addtoplants.classList.add("add-to-plants")
+           addtoplants.innerHTML = "Add to my Plants"
 
+           addtogarden.classList.add("add-to-garden")
+           addtogarden.innerHTML = "Add to my garden"
 
+            let buttonholder = document.createElement("div")
+            buttonholder.classList.add("button-holder")
 
+            addtogarden.id = e.id
+            addtoplants.id = e.id
+
+            buttonholder.appendChild(addtoplants)
+            buttonholder.appendChild(addtogarden)
+            plantentry.appendChild(buttonholder)
 
             // we will look to adding database functions here, mainly buttons to start that call other functions
             //ensure we grab the plant id when passing the data which will allow us to determine other info
             //another loop again for each plant for a new pane that contains the buttons? 
 
+            
 
          
 
@@ -145,6 +160,15 @@ export function populatePlants(response)
 
 
     }
+
+    //AFTER POPULATED WE CAN ADD A CLICK TO EACH OF OUR BUTTONS
+    let plantholder = document.querySelector(".plantbox")
+    plantholder.addEventListener("click", (e) => {
+        if (e.target.tagName == "BUTTON")
+        {
+            console.log("plantid is " + e.target.id);
+        }
+    })
 
 
     /*

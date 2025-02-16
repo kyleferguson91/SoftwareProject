@@ -39,7 +39,7 @@ def createLoginDB():
            cursor.close()
            connection.close()
            
-           
+#we also want to create a db for mongo          
            
            
 def getDBConnection():
@@ -108,80 +108,26 @@ def userExists(username, password):
         print("login in db, proceed to home page")
 
 
-
-def createGardenTable():
+def getUserID(username):
     try:
         connection = getDBConnection()
         if connection.is_connected:
                 #successful connection we want to use the ddatabase
                  cursor = connection.cursor()
                  cursor.execute("use blossomblueprint")
-                 cursor.execute('''
-                                CREATE TABLE IF NOT EXISTS garden (
-                                    garden_id INTEGER PRIMARY KEY,
-                                    garden_name TEXT NOT NULL,
-                                    user_id INTEGER,
-                                    FOREIGN KEY (user_id) REFERENCES users(id)
-                                )
-                            ''')
-                 connection.commit()
-
+                 query = "select id from users WHERE username = %s"
+                 cursor.execute(query, (username,))
+                 result = cursor.fetchone()
+                 print("checking for userid here", result)
+                 if result:
+                     return result[0]
+                 else:
+                    return False
+    #here we query database and check if the username and password match!
+    # if we get a result return true if not return false!
     except Error as e:
         print(f"error: {e}")
     finally:
         connection.close()
         cursor.close()
-        print("garden table created")
-
-
-def createPlantTable():
-    try:
-        connection = getDBConnection()
-        if connection.is_connected:
-                #successful connection we want to use the ddatabase
-                 cursor = connection.cursor()
-                 cursor.execute("use blossomblueprint")
-                 cursor.execute('''
-                                CREATE TABLE IF NOT EXISTS plant (
-                                    plant_id INTEGER PRIMARY KEY,
-                                    plat_name TEXT NOT NULL,
-                                    plant_type TEXT,
-                                    
-                                )
-                            ''')
-                 connection.commit()
-
-    except Error as e:
-        print(f"error: {e}")
-    finally:
-        connection.close()
-        cursor.close()
-        print("garden table created")
-
-
-def createUserGardenTable():
-    try:
-        connection = getDBConnection()
-        if connection.is_connected:
-                #successful connection we want to use the ddatabase
-                 cursor = connection.cursor()
-                 cursor.execute("use blossomblueprint")
-                 cursor.execute('''
-                                CREATE TABLE IF NOT EXISTS user_garden_plants (
-                                    garden_id AUTO_INCREMENT INTEGER PRIMARY KEY,
-                                    plant_id TEXT NOT NULL,
-                                    quantity INTEGER NOT NULL
-                                    PRIMARY KEY (garden_id, plant_id),  
-                                    FOREIGN KEY (garden_id) REFERENCES garden(garden_id),
-                                    FOREIGN KEY (plant_ID) REFERENCES plant(plant_id)
-                                )
-                            ''')
-                 connection.commit()
-
-    except Error as e:
-        print(f"error: {e}")
-    finally:
-        connection.close()
-        cursor.close()
-        print("garden table created")
-
+        print("login in db, proceed to home page")
