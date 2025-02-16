@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", (e) =>
         const pages = {
             "My Garden": "/static/pages/my-garden.html",
             "Search for Plants": "/static/pages/search-plants.html",
-            "Find Random Plants": "/static/pages/random-plants.html"
+            "Find Random Plants": "/static/pages/random-plants.html",
+            "My Plants": "/static/pages/my-plants.html"
         }
       fetch("/static/pages/my-garden.html").then(response => response.text()).then((html) => { content.innerHTML = html}).catch(error => console.error(error));
 

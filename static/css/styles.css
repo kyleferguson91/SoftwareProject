@@ -440,4 +440,20 @@ padding-bottom: 0.5rem;
     grid-column: 7;
 }
 
-  
+.cardplantdisplay
+{
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
+
+.plantcard
+{
+width: 15rem;
+height: 15rem;
+  border: 2px solid black;
+}

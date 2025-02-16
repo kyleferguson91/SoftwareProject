@@ -57,11 +57,15 @@ def addUserToMongo(username, userid):
         print("duplicate key for ", username, "and user id ", id, "skipping" )
         
         
-def addPlantDetailstoMongo(plantid):
+def addPlantDetailstoMongo(plantid, plantobj, where):
     client = MongoClient("mongodb://localhost:27017/")
     db = client["blosssomblueprint"]  
-    plantinfocollection = db["plantinfo"]
-    #need to add other parameters
+    #decide if these are going to favorites, or to garden
+    if where == "user plants":
+        plantinfocollection = db["userplants"]
+    elif where == "usergarden":
+        plantinfocollection = db["usergarden"]
+    #need to add other parameters to plant data, pass an object like this!
     plant_data = {"id": "test", "water":"moist","light":"full sun partial shade", "soil":"null", "height":"null",
                   "edible":"true", "growth":"null", "layer":"null", "edibleparts":"null"}
     try:

@@ -125,7 +125,25 @@ def regnew():
     return render_template('userhomepage.html', name=username, userid = id)
 
 
+
+@app.route("/addplant", methods=["POST"])
+def add_plant():
+    try:
+        data = request.json  # Get JSON data from JavaScript
+        plantid = data.get("plantid")
+        plantobj = data.get("plantobj", {})
+        where = data.get("where")
+
+        if not plantid or not where:
+            return jsonify({"error": "Missing required fields"}), 400
+
+        result = mongodatabase.addPlantDetailstoMongo(plantid, plantobj, where)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 server = Server(app.wsgi_app)
 server.watch("templates/*.*") 
 server.watch("./static/css/*.*") 
 server.serve(port=5000)
+
