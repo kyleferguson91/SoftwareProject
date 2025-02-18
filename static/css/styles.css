@@ -83,6 +83,7 @@ max-height: 80%;
     background-color: red;
     max-width: 50vw;
     height: 80vh;
+    height: max-content;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -93,17 +94,18 @@ max-height: 80%;
 .formformatter
 {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 3fr;
     grid-template-rows: 1fr 1fr 1fr;
-    margin-left: 10rem;
+
 }
 
 .formformatterregister
 {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    margin-left: 10rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+  gap: 1rem;
+   
 }
 
 .formlabelusername
@@ -126,7 +128,27 @@ color: white;
 .logininput
 {
     width: 50%;
-    margin-left: 1rem;
+    height: 50%;
+
+    align-self: center;
+    justify-self: center;
+
+    background-color: rgba(255, 255, 255, 0.5);
+
+}
+.underline-input {
+  border: none;
+  border-bottom: 2px solid gray;
+  background-color: transparent;
+  outline: none;
+  padding: 5px;
+  font-size: 16px;
+  width: 70%;
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+.underline-input:focus {
+  border-bottom: 2px solid blue;
 }
 
 .formsubmit
@@ -134,7 +156,7 @@ color: white;
 grid-column: 1/3;
 
 justify-self: center;
-margin-right: 7rem;
+
 width: max-content;
 padding: 1rem;
 margin-top: 1rem;
@@ -273,6 +295,48 @@ justify-self: center;
     min-width: 100%;
     max-width: 100%;
   }
+
+  .search-submit, .random-plant {
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    width: max-content;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+.search-submit {
+    background-color: #4CAF50;
+    color: white;
+    display: inline;
+}
+
+.search-submit:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px 8px rgba(0, 128, 0, 0.3);
+}
+
+
+.random-plant {
+    background-color: #FF9800;
+    color: white;
+}
+
+.random-plant:hover {
+    background-color: #e68900;
+    box-shadow: 0 6px 8px rgba(255, 140, 0, 0.3);
+}
+
   
 
   .nav-button:hover {

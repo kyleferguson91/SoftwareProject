@@ -2,13 +2,20 @@
 #python app.py
 
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, session
 
 from livereload import Server
 import database, requests, mongodatabase
+from flask_session import Session
+
+
 
 app = Flask(__name__)
 app.debug = True
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem" 
+Session(app)
+
 
 @app.route('/')
 def mainpage():
@@ -32,6 +39,11 @@ def submit():
             
             mongodatabase.addUserToMongo(username, id)
             print("redirect to homepage", "username = ", username, "userid = ", id)
+
+            session["userid"] = id  
+            print(session["userid"])
+            #configure session to store userid across files
+
 
             return render_template('userhomepage.html', name=username, userid = id)
         else:
@@ -120,6 +132,7 @@ def regnew():
     database.addUsertoDb(username, password, email)
     #we should re route to a homepage now
     id = database.getUserID(username)
+    session["userid"] = id  
     mongodatabase.addUserToMongo(username, id)
     print("redirect to homepage", "username = ", username, "userid = ", id)
     return render_template('userhomepage.html', name=username, userid = id)

@@ -1,1 +1,0 @@
-let plantbox = document.querySelector(".plantbox")
