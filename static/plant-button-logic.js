@@ -28,7 +28,9 @@ export function addPlantLogic(plantholder)
                 growth: growth.innerText || "No Data",
                 layer: layer.innerText || "No Data",
                 edibleparts: edibleparts.innerText || "No Data",
-                link: link.href || "No Data"
+                link: link.href || "No Data",
+                id: plantid
+                
             };
             let where = "user garden"; // or "user plants"
 
@@ -37,13 +39,15 @@ export function addPlantLogic(plantholder)
             if (e.target.classList.contains("add-to-plants"))
             {
                 console.log("clicked add to favs, ", plantobj)
+                where = "usergarden"
             }
 
             if (e.target.classList.contains("add-to-garden"))
                 {
                     console.log("clicked add to garden, ", plantobj)
+                    where = "garden"
                 }
-    /*
+    
             fetch("http://127.0.0.1:5000/addplant", {
                 method: "POST",
                 headers: {
@@ -51,10 +55,9 @@ export function addPlantLogic(plantholder)
                 },
                 body: JSON.stringify({ plantid, plantobj, where })
             })
-            .then(response => response.json())
-            .then(data => console.log("Response from Python:", data))
+    
             .catch(error => console.error("Error:", error));
-        */
+        
             }
     });
     

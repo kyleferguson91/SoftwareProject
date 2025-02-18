@@ -1,5 +1,9 @@
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
+from flask import session
+
+def get_user_id():
+    return session.get("userid")  
 
 def createMongoDB():
     client = MongoClient("mongodb://localhost:27017/")
@@ -61,15 +65,20 @@ def addPlantDetailstoMongo(plantid, plantobj, where):
     client = MongoClient("mongodb://localhost:27017/")
     db = client["blosssomblueprint"]  
     #decide if these are going to favorites, or to garden
-    if where == "user plants":
+    if where == "usergarden":
         plantinfocollection = db["userplants"]
-    elif where == "usergarden":
+    elif where == "garden":
         plantinfocollection = db["usergarden"]
     #need to add other parameters to plant data, pass an object like this!
-    plant_data = {"id": "test", "water":"moist","light":"full sun partial shade", "soil":"null", "height":"null",
-                  "edible":"true", "growth":"null", "layer":"null", "edibleparts":"null"}
+    #add the userid here 
+
     try:
-        plantinfocollection.update_one({"id": plantid}, {"$set": plant_data}, upsert=True)
-        print("user favorite and garden keys made")
+        id = get_user_id()
+        plantinfocollection.update_one(
+        {"id": id},
+        {"$push": {"plants": plantobj}},  # Adds the plant object to the plants array
+        upsert=True
+)
+       
     except DuplicateKeyError:
         print("duplicate key for plant ", plantid )

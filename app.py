@@ -142,18 +142,28 @@ def regnew():
 @app.route("/addplant", methods=["POST"])
 def add_plant():
     try:
-        data = request.json  # Get JSON data from JavaScript
+        data = request.json  
         plantid = data.get("plantid")
         plantobj = data.get("plantobj", {})
         where = data.get("where")
 
         if not plantid or not where:
             return jsonify({"error": "Missing required fields"}), 400
-
-        result = mongodatabase.addPlantDetailstoMongo(plantid, plantobj, where)
-        return jsonify(result)
+        id = session["userid"]
+        print("preparing to add ", plantid, "to ", where, "at user id", id, plantobj )
+        #details coming through ok, now to add to the certain garden
+        mongodatabase.addPlantDetailstoMongo(plantid, plantobj, where)
+        print("added plant to mongo")
+        return "added"
     except Exception as e:
+        print("did not add plant to mongo")
         return jsonify({"error": str(e)}), 500
+    
+    
+def remove_plant():
+    #to be implemented to be called via buttons in favs and garden!
+    print("remove plant logic here")
+
 
 server = Server(app.wsgi_app)
 server.watch("templates/*.*") 
