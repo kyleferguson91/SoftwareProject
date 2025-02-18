@@ -29,7 +29,7 @@ export function addPlantLogic(plantholder)
                 layer: layer.innerText || "No Data",
                 edibleparts: edibleparts.innerText || "No Data",
                 link: link.href || "No Data",
-                id: plantid
+                id: parseInt(plantid)
                 
             };
             let where = "user garden"; // or "user plants"

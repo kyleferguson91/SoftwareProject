@@ -9,7 +9,7 @@ import database, requests, mongodatabase
 from flask_session import Session
 
 
-
+#setup app and sessoin
 app = Flask(__name__)
 app.debug = True
 app.config["SESSION_PERMANENT"] = False
@@ -159,9 +159,21 @@ def add_plant():
         print("did not add plant to mongo")
         return jsonify({"error": str(e)}), 500
     
-    
+ 
+@app.route("/removeplant", methods=["POST"])   
 def remove_plant():
+    data = request.json  
+    plantid = data.get("plantid")
+    id = session["userid"]
+    where = data.get("where")
+
     #to be implemented to be called via buttons in favs and garden!
+    #find record by user id, then search the array to find the said plant, remove the plant then repopulate the display!
+#update based on matching userid as well as plant id, specify collection based on button click!
+#    db.userplants.updateOne(
+#  { "id": 1, "plants.id": "8451" },
+#  { $pull: { "plants": { "id": "8451" } } }
+#)
     print("remove plant logic here")
 
 

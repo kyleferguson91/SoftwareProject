@@ -297,6 +297,8 @@ justify-self: center;
   }
 
   .search-submit, .random-plant {
+    margin-left: 1rem;
+    margin-top: 1rem;
     padding: 12px 20px;
     font-size: 18px;
     font-weight: bold;
@@ -317,7 +319,8 @@ justify-self: center;
 
 .searchinput 
 {
-
+  margin-left: 1rem;
+  width: 50%;
 }
 
 
@@ -513,7 +516,7 @@ padding-bottom: 0.5rem;
 .cardplantdisplay
 {
   display: flex;
-
+padding: 2rem;
   width: 100%;
   height: 100%;
   gap: 2rem;
@@ -523,7 +526,47 @@ padding-bottom: 0.5rem;
 
 .plantcard
 {
-width: 15rem;
-height: 15rem;
-  border: 2px solid black;
+width: max-content;
+height: max-content;
+border: 2px solid black;
+display: grid;
+grid-template-columns: 1fr;
+grid-template-rows: 1fr 1fr;
+}
+.cardimageholder
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  justify-items: center;
+}
+
+.cardinfobox
+{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(7, 1fr) 2fr;
+
+  align-content: center;
+justify-content: stretch;
+  justify-items: center;
+}
+.cardinfotext
+{
+  font-weight: bolder;
+  width: 100%;
+  margin: 0;
+  outline: 1px solid black;
+  text-align: center;
+}
+
+.cardinfobutton
+{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: max-content;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
