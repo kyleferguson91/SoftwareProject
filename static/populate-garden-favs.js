@@ -1,5 +1,8 @@
+let whereGlobal;
+
 export function populateGardenFavs(where)
 {
+    whereGlobal = where;
     console.log("popgardenfavs", "where is equal to ", where)
     fetch('http://127.0.0.1:5000/populatefavsgarden', {
         method: 'POST',
@@ -9,7 +12,7 @@ export function populateGardenFavs(where)
 
     })
     .then(response => response.json())
-    .then(data => populateGUI(data))
+    .then(data => populateGUI(data, where))
     .catch(error => console.error('Error:', error));
 
 
@@ -17,9 +20,9 @@ export function populateGardenFavs(where)
     
 }
 
-function populateGUI(data)
+function populateGUI(data, where)
 {
-console.log(data)
+console.log("the where is", where)
 let parent = document.querySelector(".cardplantdisplay")
 // now we have json data here!
 for (let key in data) {
@@ -40,6 +43,7 @@ for (let key in data) {
         let edibleparts = plant.edibleparts
         let edible = plant.edible
         let imagelink = plant.imagelink
+        let id = plant.id
 
             let info = `${imagelink} ${name} ${link} ${soil} ${light} ${water} ${layer} ${height} ${growth} ${edible} ${edibleparts} `
           console.log(info);  
@@ -86,7 +90,7 @@ for (let key in data) {
           {
             if (key == "growth" || key == "water" || key == "soil" || key == "light" || key == "height")
             {
-                console.log(plant[key])
+               // console.log(plant[key])
 
                 //create a title div
                 let title = document.createElement("p")
@@ -108,6 +112,7 @@ for (let key in data) {
           }
           let removePlant = document.createElement("button")
           removePlant.innerText = "Remove Plant"
+          removePlant.id = id
           removePlant.classList.add("remove-plant-btn")
           infobox.appendChild(removePlant)
 
@@ -130,4 +135,28 @@ for (let key in data) {
 
 }
 
+
+
+
+// event listeners for buttons
+
+
+
 }
+
+document.addEventListener("click", (e) =>
+    {
+
+        console.log("the where is now", whereGlobal)
+    //remove this id from mongo 
+    if (e.target.tagName.toLowerCase() == 'button')
+    {
+        let id = e.target.id
+    console.log(e.target.id, "the where is ", whereGlobal)
+    
+    }
+    //call into python to remove from either garden or favs
+    
+    
+    //repopulate the display with new data! (call above function again!)
+    })

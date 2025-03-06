@@ -527,11 +527,12 @@ padding: 2rem;
 .plantcard
 {
 width: fit-content;
-height: 81%;
+height: min-content;
 border: 2px solid black;
 display: grid;
 grid-template-columns: 1fr;
-grid-template-rows: 1fr 1fr;
+grid-template-rows: auto;
+
 box-sizing: border-box;
 }
 .cardimageholder
@@ -549,7 +550,7 @@ box-sizing: border-box;
 {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 10fr;
+  grid-template-rows: auto;
 height: min-content;
   align-content: center;
 justify-content: stretch;
@@ -560,20 +561,24 @@ justify-content: stretch;
   font-weight: normal;
   width: 100%;
   margin: 0;
+  padding-top: 1rem;
+ display: inline-block;
   outline: 1px solid black;
+  vertical-align: middle; 
   text-align: center;
 }
 
 .cardinfotitle
 {
+  padding-top: 1rem;
   padding-left: 1rem;
- 
+  vertical-align: baseline; 
   font-weight: bolder;
   width: 100%;
-
+  display: inline-block;
   margin: 0;
   outline: 1px solid black;
-  text-align: left;
+
 }
 
 .cardinfobutton
