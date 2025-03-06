@@ -79,22 +79,6 @@ def search_plants():
     finally:
         print('api search')
 
-    '''
-    print("backend /searchroute")
-    query = request.args.get("q")
-    if not query:
-        return jsonify({"error": "Missing query parameter"}), 400
-
-    trefle_url = f"https://trefle.io/api/v1/plants/search?token={TREFLE_API_TOKEN}&q={query}"
-
-    try:
-        response = requests.get("https://trefle.io/api/v1/plants?token=HNuaT0HHqWTCpIbUeoRL8tc8EIz6fsOjX0htmSl6VFE")
-    
-        return response.json()
-    except requests.exceptions.RequestException as e:
-        return jsonify({"error": str(e)}), 500
-    
-    '''
 
 
 @app.route("/randomplants", methods=["GET"])
@@ -139,6 +123,9 @@ def regnew():
 
 
 
+
+
+
 @app.route("/addplant", methods=["POST"])
 def add_plant():
     try:
@@ -175,6 +162,31 @@ def remove_plant():
 #  { $pull: { "plants": { "id": "8451" } } }
 #)
     print("remove plant logic here")
+
+
+
+@app.route('/populatefavsgarden', methods=['POST'])
+def populatefavsgarden():
+    
+    #get an array from mongo db based on the current user, either garden or favs items
+    id = session["userid"]
+    data = request.json  
+    where = data.get("where")
+    
+    
+    print("populatefavsgardencalled where equals", where)
+    
+    if where == "garden":
+        #get garden array plants here
+        print("garden")
+        
+    if where == "favs":
+        #get favs array here
+        print("favs")
+        
+        
+    return "populatehere"
+
 
 
 server = Server(app.wsgi_app)

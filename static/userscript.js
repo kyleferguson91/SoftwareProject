@@ -1,6 +1,6 @@
 import * as search from "./search.js";
 import * as randomplants from "./random-plants.js";
-
+import * as populatefavs from "./populate-garden-favs.js";
 
 document.addEventListener("DOMContentLoaded", (e) => 
     {
@@ -44,7 +44,14 @@ document.addEventListener("DOMContentLoaded", (e) =>
                             {
                                 randomplants.randomPlants();
                             }
-
+                            if (e.target.innerText.toLowerCase() == "my plants")
+                                {
+                                    populatefavs.populateGardenFavs("favs");
+                                }
+                                if (e.target.innerText.toLowerCase() == "my garden")
+                                    {
+                                        populatefavs.populateGardenFavs("garden");
+                                    }
 
                         })
                         .catch(error => console.error("page loading error: ", error))

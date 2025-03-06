@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
 from flask import session
 
-def get_user_id():
+def get_user_id(): 
     return session.get("userid")  
 
 def createMongoDB():
@@ -54,8 +54,8 @@ def addUserToMongo(username, userid):
     usergardeninfo = db["usergarden"]
     userfavoriteinfo = db["userplants"]
     try:
-        usergardeninfo.update_one({"id": userid}, {"$set": user_data}, upsert=True)
-        userfavoriteinfo.update_one({"id": userid}, {"$set": user_data}, upsert=True)
+        usergardeninfo.update_one({"id": userid}, {"$setOnInsert": user_data}, upsert=True)
+        userfavoriteinfo.update_one({"id": userid}, {"$setOnInsert": user_data}, upsert=True)
         print("user favorite and garden keys made")
     except DuplicateKeyError:
         print("duplicate key for ", username, "and user id ", id, "skipping" )
@@ -72,11 +72,11 @@ def addPlantDetailstoMongo(plantid, plantobj, where):
     #need to add other parameters to plant data, pass an object like this!
     #add the userid here 
 
-    try:
+    try: 
         id = get_user_id()
         plantinfocollection.update_one(
         {"id": id},
-        {"$push": {"plants": plantobj}},  # Adds the plant object to the plants array
+        {"$addToSet": {"plants": plantobj}},  # add to plant array
         upsert=True
 )
        
