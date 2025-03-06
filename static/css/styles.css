@@ -526,12 +526,13 @@ padding: 2rem;
 
 .plantcard
 {
-width: max-content;
-height: max-content;
+width: fit-content;
+height: 81%;
 border: 2px solid black;
 display: grid;
 grid-template-columns: 1fr;
 grid-template-rows: 1fr 1fr;
+box-sizing: border-box;
 }
 .cardimageholder
 {
@@ -540,33 +541,89 @@ grid-template-rows: 1fr 1fr;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  height: min-content;
   justify-items: center;
 }
 
 .cardinfobox
 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(7, 1fr) 2fr;
-
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 10fr;
+height: min-content;
   align-content: center;
 justify-content: stretch;
   justify-items: center;
 }
 .cardinfotext
 {
-  font-weight: bolder;
+  font-weight: normal;
   width: 100%;
   margin: 0;
   outline: 1px solid black;
   text-align: center;
 }
 
+.cardinfotitle
+{
+  padding-left: 1rem;
+ 
+  font-weight: bolder;
+  width: 100%;
+
+  margin: 0;
+  outline: 1px solid black;
+  text-align: left;
+}
+
 .cardinfobutton
 {
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  
   width: max-content;
   margin-left: 1rem;
   margin-right: 1rem;
+}
+
+.galleryplantimage
+{
+  width: 10rem;
+  height: 10rem;
+}
+
+.plantname {
+  font-weight: bolder;
+  font-size: 2rem;
+}
+
+.remove-plant-btn {
+  background-color: #f8b4b4;
+  
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+  font-size: 16px;
+  height: 5rem;
+  margin-top: 1rem;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: 2px solid #f8b4b4;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.remove-plant-btn:hover {
+  background-color: #f35c5c; 
+  border-color: #f35c5c;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.remove-plant-btn:active {
+  background-color: #e24747; 
+  transform: translateY(0);
+}
+
+.remove-plant-btn:focus {
+  outline: none;
 }

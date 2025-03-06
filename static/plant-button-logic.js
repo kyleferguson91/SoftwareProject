@@ -6,6 +6,7 @@ export function addPlantLogic(plantholder)
             let parent = e.target.closest(".plantentry");
             let info = parent.querySelector(".infodiv1")
             let info2 = parent.querySelector(".infodiv2")
+            let name = parent.querySelector(".plantitemname") || "No Data"
             let water = parent.querySelector("#waterrequirement") || "No data"
             let light = parent.querySelector("#lightrequirement") || "No data"
             let soil = parent.querySelector("#soiltype") || "No data"
@@ -14,12 +15,14 @@ export function addPlantLogic(plantholder)
             let growth = parent.querySelector("#growth") || "No data"
             let layer= parent.querySelector("#layer") || "No data"
             let edibleparts = parent.querySelector("#edibleparts") || "No data"
+            let imagelink = parent.querySelector(".plantitemimage") || "No data"
             let link = parent.querySelector("a") || "No data"
             console.log(water.innerText, light.innerText, soil.innerText, height.innerText, edible.innerText, growth.innerText,
                 layer.innerText, edibleparts.innerText
             )
             //extract the info from the relevant areas
             let plantobj = {
+                name: name.innerText || "No Data",
                 water: water.innerText || "No Data",
                 light: light.innerText || "No Data",
                 soil: soil.innerText || "No Data",
@@ -27,8 +30,10 @@ export function addPlantLogic(plantholder)
                 edible: edible.innerText || "No Data",
                 growth: growth.innerText || "No Data",
                 layer: layer.innerText || "No Data",
+                imagelink: imagelink.src || "No data",
                 edibleparts: edibleparts.innerText || "No Data",
                 link: link.href || "No Data",
+                imagelink: imagelink.src || "No data",
                 id: parseInt(plantid)
                 
             };

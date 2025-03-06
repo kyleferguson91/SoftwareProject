@@ -175,17 +175,15 @@ def populatefavsgarden():
     
     
     print("populatefavsgardencalled where equals", where)
+    collection = mongodatabase.returnPlantDetails(where)
+    print (collection, "collection from populatefavfarden app.py")
+    if not collection:
+            return 404
+    return collection
     
-    if where == "garden":
-        #get garden array plants here
-        print("garden")
-        
-    if where == "favs":
-        #get favs array here
-        print("favs")
         
         
-    return "populatehere"
+ 
 
 
 

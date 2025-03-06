@@ -1,6 +1,8 @@
 from pymongo import MongoClient
 from pymongo.errors import DuplicateKeyError
-from flask import session
+from flask import session, jsonify
+from bson import json_util
+import json
 
 def get_user_id(): 
     return session.get("userid")  
@@ -82,3 +84,33 @@ def addPlantDetailstoMongo(plantid, plantobj, where):
        
     except DuplicateKeyError:
         print("duplicate key for plant ", plantid )
+        
+        
+        
+        
+def returnPlantDetails(where):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["blosssomblueprint"]  
+    #decide if these are going to favorites, or to garden
+    if where == "favs":
+        plantinfocollection = db["userplants"]
+    elif where == "garden":
+        plantinfocollection = db["usergarden"]
+    #need to add other parameters to plant data, pass an object like this!
+    #add the userid here 
+    
+    try: 
+        print("returnplantdetailscalled")
+        id = get_user_id()
+        if not id:
+            return None
+        collection = plantinfocollection.find_one({"id": id}, {"_id": 0, "id":0})
+        if collection is None:
+            return None
+        print("collection here ", collection)
+        json_data = json.loads(json_util.dumps(collection))
+
+        return json_data
+    
+    except DuplicateKeyError:
+        print("duplicate key for plant ")
