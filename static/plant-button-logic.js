@@ -45,12 +45,18 @@ export function addPlantLogic(plantholder)
             {
                 console.log("clicked add to favs, ", plantobj)
                 where = "usergarden"
+                e.target.disabled = "true";
+                e.target.innerText = "Plant Added!"
+                e.target.classList.add("disabled")
             }
 
             if (e.target.classList.contains("add-to-garden"))
                 {
                     console.log("clicked add to garden, ", plantobj)
                     where = "garden"
+                     e.target.disabled = "true";
+                    e.target.innerText = "Plant Added!"
+                    e.target.classList.add("disabled")
                 }
     
             fetch("http://127.0.0.1:5000/addplant", {

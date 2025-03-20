@@ -613,8 +613,11 @@ justify-content: stretch;
   border-radius: 25px;
   border: 2px solid #f8b4b4;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition:  all 3.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  color: white;
+
 }
 
 .remove-plant-btn:hover {
@@ -631,4 +634,11 @@ justify-content: stretch;
 
 .remove-plant-btn:focus {
   outline: none;
+}
+
+.disabled {
+  transform: scale(0.5);  
+  opacity: 0; 
+  pointer-events: none; 
+  cursor: default; 
 }
