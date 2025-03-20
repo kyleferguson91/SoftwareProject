@@ -28,26 +28,6 @@ def createMongoDB():
     if "id_1" not in existing_indexes:
         plantinfocollection.create_index([("id", 1)], unique=True)
     
-    '''
-    #insert data for creation
-    user_data = {"id": "test", "plantid": [1,5,6,8]}
-    plant_data = {"id": "test", "water":"moist","light":"full sun partial shade", "soil":"null", "height":"null",
-                  "edible":"true", "growth":"null", "layer":"null", "edibleparts":"null"}
-    #unique id's for user and plant id's
-
-    try:
-        usergardeninfo.update_one({"id": user_data["id"]}, {"$set": user_data}, upsert=True)
-        userfavoriteinfo.update_one({"id": user_data["id"]}, {"$set": user_data}, upsert=True)
-        plantinfocollection.update_one({"id": plant_data["id"]}, {"$set": plant_data}, upsert=True)
-
-            
-        print("Databases:", client.list_database_names())
-        print("Collections in my_database:", db.list_collection_names())
-    
-    except DuplicateKeyError:
-        print("Duplicate entry skipping insert")
-    
-'''
     
 def addUserToMongo(username, userid):
     client = MongoClient("mongodb://localhost:27017/")
@@ -82,8 +62,8 @@ def addPlantDetailstoMongo(plantid, plantobj, where):
         upsert=True
 )
        
-    except DuplicateKeyError:
-        print("duplicate key for plant ", plantid )
+    except Exception as e:
+        print("error adding plant details")
         
         
         
@@ -107,10 +87,46 @@ def returnPlantDetails(where):
         collection = plantinfocollection.find_one({"id": id}, {"_id": 0, "id":0})
         if collection is None:
             return None
-        print("collection here ", collection)
+        #print("collection here ", collection)
         json_data = json.loads(json_util.dumps(collection))
 
         return json_data
     
-    except DuplicateKeyError:
-        print("duplicate key for plant ")
+    except Exception as e:
+        print("error retreiving plant details")
+        
+        
+        
+def removePlant(where, plant_id):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["blosssomblueprint"]  
+    #decide if these are removing from favs/ garden
+    if where == "favs":
+        plantinfocollection = db["userplants"]
+    elif where == "garden":
+        plantinfocollection = db["usergarden"]
+    try: 
+        
+        userid = get_user_id()
+        plant_id = int(plant_id)
+        print("remove plant called", "userid", userid, "where", where, "plantid", plant_id)
+        if not userid:
+            return None
+        #check plant exists
+        plant = plantinfocollection.find_one({ "id": userid, "plants.id": plant_id })
+        if not plant:
+            print("Plant not found for user:", userid)
+            return None
+        # perform the remove o
+        result = plantinfocollection.update_one(
+            { "id": userid, "plants.id": plant_id },  #
+            { "$pull": { "plants": { "id": plant_id } } } 
+        )
+        if result.modified_count > 0:
+            print("plant removed")
+        else: 
+            print("plant not removed")
+    except Exception as e:
+        print("error removing plant", e)
+    return "result"
+        

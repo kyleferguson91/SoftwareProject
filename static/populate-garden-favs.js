@@ -24,6 +24,8 @@ function populateGUI(data, where)
 {
 console.log("the where is", where)
 let parent = document.querySelector(".cardplantdisplay")
+//first we clear the parent!
+parent.innerHTML = "";
 // now we have json data here!
 for (let key in data) {
     if (data.hasOwnProperty(key)) {
@@ -46,8 +48,8 @@ for (let key in data) {
         let id = plant.id
 
             let info = `${imagelink} ${name} ${link} ${soil} ${light} ${water} ${layer} ${height} ${growth} ${edible} ${edibleparts} `
-          console.log(info);  
-          console.log(parent)
+          //console.log(info);  
+          //console.log(parent)
 
           let plantcard = document.createElement("div")
           plantcard.classList.add("plantcard")
@@ -138,25 +140,61 @@ for (let key in data) {
 
 
 
+
 // event listeners for buttons
 
 
 
 }
 
+
+
+
+
+
 document.addEventListener("click", (e) =>
     {
 
         console.log("the where is now", whereGlobal)
     //remove this id from mongo 
-    if (e.target.tagName.toLowerCase() == 'button')
+    if (e.target.tagName.toLowerCase() == 'button' && e.target.classList.contains("remove-plant-btn"))
     {
         let id = e.target.id
     console.log(e.target.id, "the where is ", whereGlobal)
-    
+      
+    removePlant(whereGlobal, id);
+    populateGardenFavs(whereGlobal);
     }
     //call into python to remove from either garden or favs
-    
+    // passing id as plant id and where as where
+
+  
+
     
     //repopulate the display with new data! (call above function again!)
+
+
     })
+
+
+
+//removal function
+async function removePlant(where, plantid) {
+  try {
+      const response = await fetch("http://127.0.0.1:5000/removeplant", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ where: where, plantid: plantid })
+      });
+
+      if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.text()
+      console.log(data.message);
+      return data; 
+  } catch (error) {
+      console.error("Error:", error);
+  }
+
+}
